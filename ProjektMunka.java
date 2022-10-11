@@ -52,7 +52,7 @@ public class ProjektMunka {
 
     public static void main(String[] args) {
         
-        File kulkereskedelmiTermekforgalom = new File("C:\\Users\\Peti\\OneDrive\\Asztali gép\\Iskola\\Prog 2\\Projekt1\\stadat-ara0007-1.1.1.7-hu2.csv");//1.1.1.7. A külkereskedelmi termékforgalom árindexei és a cserearány-mutatók [Előző év = 100,0%]
+        File kulkereskedelmiTermekforgalom = new File("C:\\Users\\Peti\\OneDrive\\Asztali gép\\Iskola\\Prog 2\\Projekt1\\stadat-ara0007-1.1.1.7-hu2.csv");
         
         ArrayList<CSVfile> lista = new ArrayList<>();
         fileRead(lista, kulkereskedelmiTermekforgalom);
@@ -121,8 +121,9 @@ public class ProjektMunka {
                 csv.add(csvadat);
             }
 
-        } catch (FileNotFoundException ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
+            System.exit(0);
         }
 
     }
