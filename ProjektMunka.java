@@ -49,16 +49,19 @@ class CSVfile {
 }
 
 public class ProjektMunka {
+    
+    public static String fileName;
+    public static String fileColumnName;
 
     public static void main(String[] args) {
         
-        File kulkereskedelmiTermekforgalom = new File("C:\\Users\\Peti\\OneDrive\\Asztali gép\\Iskola\\Prog 2\\Projekt1\\stadat-ara0007-1.1.1.7-hu2.csv");
+        File kulkereskedelmiTermekforgalom = new File("C:\\Users\\Peti\\Downloads\\stadat-ara0007-1.1.1.7-hu2.csv");
         
         ArrayList<CSVfile> lista = new ArrayList<>();
         fileRead(lista, kulkereskedelmiTermekforgalom);
         
-        fileName(kulkereskedelmiTermekforgalom);
-        fileColumnName(kulkereskedelmiTermekforgalom);
+        System.out.println(fileName);
+        System.out.println(fileColumnName);
         lista.forEach(System.out::println);
         sorValaszto();
         fileColumnName(kulkereskedelmiTermekforgalom, 1);
@@ -110,9 +113,9 @@ public class ProjektMunka {
     
     public static void fileRead(ArrayList<CSVfile> csv, File f) {
         try {
-            Scanner scan = new Scanner(f);
-            scan.nextLine();
-            scan.nextLine();
+            Scanner scan = new Scanner(f, "ISO-8859-2");
+            fileName = scan.nextLine();
+            fileColumnName = scan.nextLine();
             while (scan.hasNextLine()) {
                 String beolvasottsor = scan.nextLine();
                 String sor = beolvasottsor.replace(',', '.'); //A ,-t át kell alakítani .-tá, hogy át lehessen írni számmá.
@@ -128,28 +131,9 @@ public class ProjektMunka {
 
     }
     
-    public static void fileName(File f) {
-        try {
-            Scanner scan = new Scanner(f);
-            System.out.println(scan.nextLine());
-        } catch (FileNotFoundException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-    
-    public static void fileColumnName(File f) {
-        try {
-            Scanner scan = new Scanner(f);
-            scan.nextLine();
-            System.out.println(scan.nextLine());
-        } catch (FileNotFoundException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-    
     public static void fileColumnName(File f, int i) {
         try {
-            Scanner scan = new Scanner(f);
+            Scanner scan = new Scanner(f, "ISO-8859-2");
             scan.nextLine();
             String sor = scan.nextLine();
             String[] adatok = sor.split(";");
